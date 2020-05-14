@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace sFire\Encryption\Adapter;
 
-use Exception;
 use sFire\Encryption\EncryptionAbstract;
 use sFire\Encryption\Exception\BadFunctionCallException;
 
@@ -54,7 +53,6 @@ class OpenSsl extends EncryptionAbstract {
      * @param string $data The data that needs to be encrypted
      * @param string $key A secret key
      * @return string
-     * @throws Exception
      */
 	public function encrypt($data, $key): string {
 
