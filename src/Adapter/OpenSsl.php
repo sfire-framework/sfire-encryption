@@ -36,16 +36,16 @@ class OpenSsl extends EncryptionAbstract {
     private string $algorithm = 'SHA256';
 
 
-	/**
-	 * Constructor
+    /**
+     * Constructor
      * @throws BadFunctionCallException
-	 */
-	public function __construct() {
-		
+     */
+    public function __construct() {
+
         if(false === extension_loaded('openssl')) {
-			throw new BadFunctionCallException('PHP extension openssl is not installed or enabled');
-		}
-	}
+            throw new BadFunctionCallException('PHP extension openssl is not installed or enabled');
+        }
+    }
 
 
     /**
@@ -54,7 +54,7 @@ class OpenSsl extends EncryptionAbstract {
      * @param string $key A secret key
      * @return string
      */
-	public function encrypt($data, $key): string {
+    public function encrypt($data, $key): string {
 
         $iv 		= random_bytes(16);
         $cipherText = openssl_encrypt($data, $this -> cipher, mb_substr($key, 0, 32, $this -> encoding), OPENSSL_RAW_DATA, $iv);
@@ -64,13 +64,13 @@ class OpenSsl extends EncryptionAbstract {
     }
 
 
-	/**
-	 * Decrypting data
-	 * @param string $data The data that needs to be encrypted
-	 * @param string $key A secret key
-	 * @return string
-	 */
-	public function decrypt($data, $key): ?string {
+    /**
+     * Decrypting data
+     * @param string $data The data that needs to be encrypted
+     * @param string $key A secret key
+     * @return string
+     */
+    public function decrypt($data, $key): ?string {
 
         $hmac       = mb_substr($data, 0, 32, $this -> encoding);
         $iv         = mb_substr($data, 32, 16, $this -> encoding);

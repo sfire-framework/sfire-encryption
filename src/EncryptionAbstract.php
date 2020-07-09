@@ -21,29 +21,29 @@ use sFire\Encryption\Exception\InvalidArgumentException;
 abstract class EncryptionAbstract {
 
 
-	/**
-	 * Contains the encoding type
-	 * @var string
-	 */
-	protected string $encoding = '8bit';
+    /**
+     * Contains the encoding type
+     * @var string
+     */
+    protected string $encoding = '8bit';
 
 
-	/**
-	 * Encrypting data
-	 * @param string $data The data that needs to be encrypted
-	 * @param string $key A secret key
-	 * @return string
-	 */
-	abstract public function encrypt(string $data, string $key): string;
+    /**
+     * Encrypting data
+     * @param string $data The data that needs to be encrypted
+     * @param string $key A secret key
+     * @return string
+     */
+    abstract public function encrypt(string $data, string $key): string;
 
 
-	/**
-	 * Decrypting data
-	 * @param string $data The data that needs to be encrypted
-	 * @param string $key A secret key
-	 * @return string
-	 */
-	abstract public function decrypt(string $data, string $key): ?string;
+    /**
+     * Decrypting data
+     * @param string $data The data that needs to be encrypted
+     * @param string $key A secret key
+     * @return string
+     */
+    abstract public function decrypt(string $data, string $key): ?string;
 
 
     /**
@@ -52,12 +52,12 @@ abstract class EncryptionAbstract {
      * @return void
      * @throws InvalidArgumentException
      */
-	public function setEncoding(string $encoding): void {
+    public function setEncoding(string $encoding): void {
 
-		if(false === in_array($encoding, mb_list_encodings())) {
-			throw new InvalidArgumentException(sprintf('Encoding "%s" given to "%s" is not supported', $encoding, __METHOD__));
-		}
+        if(false === in_array($encoding, mb_list_encodings())) {
+            throw new InvalidArgumentException(sprintf('Encoding "%s" given to "%s" is not supported', $encoding, __METHOD__));
+        }
 
-		$this -> encoding = $encoding;
-	}
+        $this -> encoding = $encoding;
+    }
 }
